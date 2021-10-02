@@ -17,9 +17,9 @@ namespace JsonApi
         /// <summary>
         /// </summary>
         /// <param name="handlers"></param>
-        public Resolver(List<IApiHandler> handlers)
+        public Resolver(IEnumerable<IApiHandler> handlers)
         {
-            _handlers = handlers;
+            _handlers = handlers.ToList();
             _serializerOptions = new JsonSerializerOptions
             {
                 Converters =

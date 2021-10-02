@@ -8,10 +8,11 @@
         <Authors>tof4</Authors>
         <Copyright>tof4</Copyright>
         <PackageProjectUrl>https://github.com/tof4/JsonApi</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/tof4/JsonApi/blob/main/LICENSE</PackageLicenseUrl>
+        <PackageLicense>https://github.com/tof4/JsonApi/blob/main/LICENSE</PackageLicense>
         <RepositoryUrl>https://github.com/tof4/JsonApi</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>json, api, network</PackageTags>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
 </Project>
