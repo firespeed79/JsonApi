@@ -9,7 +9,7 @@ namespace JsonApi.Tests
     public class Tests
     {
         private ModelHandler _modelHandler;
-        private Resolver _resolver;
+        private IResolver _resolver;
 
         [SetUp]
         public void Setup()
@@ -42,14 +42,14 @@ namespace JsonApi.Tests
             const string data = "{\"Model\": {\"Text\": \"Very long string, too long\", \"RequiredTest\": \"text\"}}";
             Assert.Catch<ValidationException>(() => { _resolver.CallHandler(data); });
         }
-        
+
         [Test]
         public void RequiredValidation()
         {
             const string data = "{\"Model\": {\"Text\": \"text\"}}";
             Assert.Catch<ValidationException>(() => { _resolver.CallHandler(data); });
         }
-        
+
         [Test]
         public void DisabledHandler()
         {

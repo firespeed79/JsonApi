@@ -10,7 +10,7 @@ namespace JsonApi
     {
         /// <inheritdoc />
         public Type HandledType { get; } = typeof(T);
-        
+
         /// <inheritdoc />
         public bool Disabled { get; set; }
 

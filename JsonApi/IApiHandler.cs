@@ -11,12 +11,12 @@ namespace JsonApi
         ///     Handled model type.
         /// </summary>
         Type HandledType { get; }
-        
+
         /// <summary>
-        ///    Disable handler. 
+        ///     Disable handler.
         /// </summary>
         public bool Disabled { get; }
-        
+
         /// Handle object
         public void Handle(object data);
     }

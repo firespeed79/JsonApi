@@ -1,7 +1,7 @@
 namespace JsonApi
 {
     /// <summary>
-    ///     Processes the data and call the appropriate handler. 
+    ///     Processes the data and call the appropriate handler.
     /// </summary>
     public interface IResolver
     {

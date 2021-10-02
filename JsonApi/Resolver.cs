@@ -13,9 +13,8 @@ namespace JsonApi
         private readonly List<IApiHandler> _handlers;
         private readonly List<Type> _knownModels = new();
         private readonly JsonSerializerOptions _serializerOptions;
-        
+
         /// <summary>
-        ///     
         /// </summary>
         /// <param name="handlers"></param>
         public Resolver(List<IApiHandler> handlers)
@@ -25,13 +24,13 @@ namespace JsonApi
             {
                 Converters =
                 {
-                    new JsonStringEnumConverter(),
+                    new JsonStringEnumConverter()
                 }
             };
-            
+
             _handlers.ForEach(RegisterHandler);
         }
-        
+
         /// <inheritdoc />
         public void CallHandler(string json)
         {
@@ -40,7 +39,7 @@ namespace JsonApi
             CheckPreconditions(data, handler);
             handler.Handle(data);
         }
-        
+
         private object Deserialize(string item)
         {
             var wrapper = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(item, _serializerOptions);
@@ -53,7 +52,7 @@ namespace JsonApi
         {
             _knownModels.Add(apiHandler.HandledType);
         }
-        
+
         private IApiHandler GetHandler(Type jsonType)
         {
             return _handlers.First(x => x.HandledType == jsonType);
@@ -62,11 +61,8 @@ namespace JsonApi
         // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Local
         private static void CheckPreconditions(object data, IApiHandler handler)
         {
-            if (handler.Disabled)
-            {
-                throw new InvalidOperationException($"Handler of {data.GetType().Name} is disabled.");
-            }
-            
+            if (handler.Disabled) throw new InvalidOperationException($"Handler of {data.GetType().Name} is disabled.");
+
             Validator.ValidateObject(data, new ValidationContext(data), true);
         }
     }
