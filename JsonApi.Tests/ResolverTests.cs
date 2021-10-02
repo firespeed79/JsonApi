@@ -31,31 +31,27 @@ namespace JsonApi.Tests
         [Test]
         public void BasicHandling()
         {
-            const string data = "{\"Model\": {\"Text\": \"text\", \"RequiredTest\": \"text\"}}";
-            _resolver.CallHandler(data);
+            _resolver.CallHandler(TestStrings.ValidJson);
             Assert.IsNotNull(_modelHandler.Model);
         }
 
         [Test]
         public void MaxLengthValidation()
         {
-            const string data = "{\"Model\": {\"Text\": \"Very long string, too long\", \"RequiredTest\": \"text\"}}";
-            Assert.Catch<ValidationException>(() => { _resolver.CallHandler(data); });
+            Assert.Catch<ValidationException>(() => { _resolver.CallHandler(TestStrings.TooLongStringJson); });
         }
 
         [Test]
         public void RequiredValidation()
         {
-            const string data = "{\"Model\": {\"Text\": \"text\"}}";
-            Assert.Catch<ValidationException>(() => { _resolver.CallHandler(data); });
+            Assert.Catch<ValidationException>(() => { _resolver.CallHandler(TestStrings.NoRequiredFieldJson); });
         }
 
         [Test]
         public void DisabledHandler()
         {
-            const string data = "{\"Model\": {\"Text\": \"text\", \"RequiredTest\": \"text\"}}";
             _modelHandler.Disabled = true;
-            Assert.Catch<InvalidOperationException>(() => { _resolver.CallHandler(data); });
+            Assert.Catch<InvalidOperationException>(() => { _resolver.CallHandler(TestStrings.ValidJson); });
         }
     }
 }
