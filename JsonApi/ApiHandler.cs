@@ -8,17 +8,13 @@ namespace JsonApi
     /// <typeparam name="T">Model class</typeparam>
     public abstract class ApiHandler<T> : IApiHandler
     {
-        /// <summary>
-        ///     Handled model type.
-        /// </summary>
+        /// <inheritdoc />
         public Type HandledType { get; } = typeof(T);
         
-        /// <summary>
-        ///    Disable handler. 
-        /// </summary>
-        public bool Disabled { get; protected set; }
+        /// <inheritdoc />
+        public bool Disabled { get; set; }
 
-        /// Handle object
+        /// <inheritdoc />
         public void Handle(object data)
         {
             Handle((T)data);
